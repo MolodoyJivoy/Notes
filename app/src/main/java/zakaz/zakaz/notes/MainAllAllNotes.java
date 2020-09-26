@@ -2,31 +2,32 @@ package zakaz.zakaz.notes;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.paperdb.Paper;
-import zakaz.zakaz.notes.Adapter.NoteListAdapter;
+import zakaz.zakaz.notes.Adapter.NoteRecyclerListAdapter;
 import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.Model.Note;
 import zakaz.zakaz.notes.Presenter.INoteAllPresenter;
 import zakaz.zakaz.notes.Presenter.NoteAllAllPresenter;
 import zakaz.zakaz.notes.View.IMainAllNotes;
 
-public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes {
+public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes, NoteRecyclerListAdapter.OnNoteListener {
 
     Button newNote;
     INoteAllPresenter iNoteAllPresenter;
-    ListView listAllView;
-    NoteListAdapter noteListAdapter;
+    RecyclerView listAllView;
+
+    NoteRecyclerListAdapter noteRecyclerListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,11 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes 
 
     @Override
     public void AllNotes(List<Note> note) {
-        noteListAdapter = new NoteListAdapter(this, note);
-        listAllView.setAdapter(noteListAdapter);
+        //noteListAdapter = new NoteListAdapter(this, note);
+        noteRecyclerListAdapter = new NoteRecyclerListAdapter(this, note, this);
+        listAllView.setAdapter(noteRecyclerListAdapter);
+        listAllView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
     }
 
     @Override
@@ -69,5 +73,10 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes 
     void clear(){
         Paper.init(getApplicationContext());
         Paper.book("Notes").destroy();
+    }
+
+    @Override
+    public void onNoteClick(int position, List<Note> modelList) {
+        Toast.makeText(this, modelList.get(position).getToday(), Toast.LENGTH_SHORT).show();
     }
 }

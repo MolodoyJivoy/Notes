@@ -45,7 +45,14 @@ public class NoteListAdapter extends BaseAdapter {
 
         ZagolovokNote.setText(note.get(position).getZagolovok());
         TextNote.setText(note.get(position).getToday());
-        TagNote.setText("3");
+        StringBuffer tags = new StringBuffer();
+        for (String tag : note.get(position).getTag()){
+            tags.append("#");
+            tags.append(tag);
+            tags.append(" ");
+
+        }
+        TagNote.setText(tags);
         return view1;
     }
 }

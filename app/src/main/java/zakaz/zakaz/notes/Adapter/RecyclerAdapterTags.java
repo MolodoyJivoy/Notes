@@ -129,6 +129,14 @@ public class RecyclerAdapterTags extends RecyclerView.Adapter<RecyclerAdapterTag
         bottomSheetDialog.show();
     }
 
+    public List<Tag> getModelList(){
+        if (modelList.size() != 0){
+            return modelList;
+        }else {
+            return null;
+        }
+    }
+
     void editTagMenu(final int pos){
         Button sendButton = bottomView.findViewById(R.id.sendButton);
         final TextInputEditText textTag = bottomView.findViewById(R.id.TagName);

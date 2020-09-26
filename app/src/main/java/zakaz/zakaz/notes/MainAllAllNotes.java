@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import zakaz.zakaz.notes.Adapter.NoteListAdapter;
 import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.Model.Note;
@@ -31,12 +32,13 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //clear();
         listAllView = findViewById(R.id.AllNotes);
+        newNote = findViewById(R.id.newNote);
 
         iNoteAllPresenter = new NoteAllAllPresenter(this, new Data());
         iNoteAllPresenter.onAllNotes(getApplicationContext());
 
-        newNote = findViewById(R.id.newNote);
         newNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,5 +64,10 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes 
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    void clear(){
+        Paper.init(getApplicationContext());
+        Paper.book("Notes").destroy();
     }
 }

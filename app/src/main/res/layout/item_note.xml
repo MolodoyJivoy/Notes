@@ -6,6 +6,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardItemNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -30,27 +31,54 @@
 
             <TextView
                 android:id="@+id/ZagolovokNote"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Заголовок"
+                android:textColor="#292929"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="center"
+                android:background="#DDDDDD"
+                android:layout_width = "wrap_content"
+                android:layout_height="1dp"/>
 
             <TextView
                 android:id="@+id/textNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:text="Текст"
+                android:textColor="#474747"
                 android:textSize="16sp" />
+
+            <View
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="center"
+                android:background="#DDDDDD"
+                android:layout_width = "wrap_content"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="18 сентября 2020"
+                android:textColor="#474747"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tagNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="#Тег"
-                android:textSize="14sp" />
+                android:layout_marginTop="4dp"
+                android:text="#Работа #Юля"
+                android:textSize="13sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DateFormat;
@@ -46,6 +47,8 @@ public class NoteModernFragment extends Fragment implements INoteModern {
     Note note;
 
     RecyclerAdapterTags recyclerAdapterTags;
+
+    private MaterialButton newNote;
 
     private TextInputEditText Zagolovok;
     private TextView Date;
@@ -93,6 +96,16 @@ public class NoteModernFragment extends Fragment implements INoteModern {
             }
         });
 
+        newNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                getDataNote();
+                getActivity().setResult(RESULT_OK, intent);
+                getActivity().finish();
+            }
+        });
+
     }
 
     private void getTime() {
@@ -112,25 +125,14 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         Date = view.findViewById(R.id.DateModernNotes);
         Mood = view.findViewById(R.id.Mood);
 
+        newNote = view.findViewById(R.id.newNote);
+
         recyclerView = view.findViewById(R.id.ItemsCircle);
         List<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Добавить тег", -1));
         recyclerAdapterTags = new RecyclerAdapterTags(getContext(), tags);
         recyclerView.setAdapter(recyclerAdapterTags);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                Intent intent = new Intent();
-                getDataNote();
-                getActivity().setResult(RESULT_OK, intent);
-                getActivity().finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void getDataNote() {
@@ -141,7 +143,12 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         String sleep = Sleep.getText().toString();
         String mood = Mood.getText().toString();
         String date = Date.getText().toString();
-        note = new Note(zagolovok, today, thanks, task, sleep, mood, date, null);
+        List<Tag> tagsList = recyclerAdapterTags.getModelList();
+        String[] tags = new String[tagsList.size() - 1];
+        for (int i = 0 ; i < tagsList.size() - 1; i++){
+            tags[i] = tagsList.get(i).getName();
+        }
+        note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags);
         iNoteModernPresenter.saveNote(note, getContext());
     }
 }

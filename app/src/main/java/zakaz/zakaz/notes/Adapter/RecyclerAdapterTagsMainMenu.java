@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 
 import java.util.List;
+import java.util.Random;
 
 import zakaz.zakaz.notes.Model.Tag;
 import zakaz.zakaz.notes.R;
@@ -23,6 +24,9 @@ public class RecyclerAdapterTagsMainMenu extends RecyclerView.Adapter<RecyclerAd
 
     private Context context;
     private String[] modelList;
+
+    private int[] colors = {R.color.Color1, R.color.Color2, R.color.Color3, R.color.Color4,R.color.Color5,
+            R.color.Color6, R.color.Color7 ,R.color.Color8, R.color.Color9, R.color.Color10};
 
     public RecyclerAdapterTagsMainMenu(Context context, String[] modelList) {
         this.context = context;
@@ -39,9 +43,12 @@ public class RecyclerAdapterTagsMainMenu extends RecyclerView.Adapter<RecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMain holder, int position) {
+        int a = 0;
+        int b = 9;
+        int random = a + (int) (Math.random() * b);
         holder.chip.setText("#" + modelList[position]);
         holder.chip.setCloseIconVisible(false);
-        holder.chip.setChipBackgroundColorResource(R.color.Color1);
+        holder.chip.setChipBackgroundColorResource(colors[random]);
         holder.chip.setTextColor(Color.WHITE);
     }
 

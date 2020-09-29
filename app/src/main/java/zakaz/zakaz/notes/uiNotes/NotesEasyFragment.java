@@ -1,5 +1,6 @@
 package zakaz.zakaz.notes.uiNotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,8 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -62,19 +66,26 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                getDataNote();
-                getActivity().setResult(RESULT_OK, intent);
-                getActivity().finish();
+                if (getDataNote()){
+                    getActivity().setResult(RESULT_OK, intent);
+                    getActivity().finish();
+                }
             }
         });
     }
 
-    private void getDataNote() {
+    private boolean getDataNote() {
         String zagolovok = "Заметка " + iNoteEasyPresenter.countNote(getContext());
         String today = Today.getText().toString();
         String date = Date.getText().toString();
-        note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY);
-        iNoteEasyPresenter.saveNote(note, getContext());
+        if (today.trim().length() != 0){
+            note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY);
+            iNoteEasyPresenter.saveNote(note, getContext());
+            return true;
+        }else {
+            Toast.makeText(getContext(), "Заметка не может быть пустая", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     private void getTime() {

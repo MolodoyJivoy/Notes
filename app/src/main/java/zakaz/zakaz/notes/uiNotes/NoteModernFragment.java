@@ -11,12 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -99,12 +103,89 @@ public class NoteModernFragment extends Fragment implements INoteModern {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                getDataNote();
-                getActivity().setResult(RESULT_OK, intent);
-                getActivity().finish();
+                if (getDataNote()){
+                    getActivity().setResult(RESULT_OK, intent);
+                    getActivity().finish();
+                }
             }
         });
 
+        Today.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Thanks);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        Thanks.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Task);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        Task.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Sleep);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        Sleep.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Mood);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void setFocus(CharSequence s, EditText focus) {
+        String m_s = s.toString();
+        if (m_s.trim().contains(",.")){
+            focus.setFocusable(true);
+            focus.requestFocus();
+        }
     }
 
     private void getTime() {
@@ -134,7 +215,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
-    private void getDataNote() {
+    private boolean getDataNote() {
         String zagolovok = Zagolovok.getText().toString();
         String today = Today.getText().toString();
         String thanks = Thanks.getText().toString();
@@ -147,7 +228,16 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         for (int i = 0 ; i < tagsList.size() - 1; i++){
             tags[i] = tagsList.get(i).getName();
         }
-        note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN);
-        iNoteModernPresenter.saveNote(note, getContext());
+
+        if (today.trim().length() != 0 || thanks.trim().length() != 0 || task.trim().length() != 0 || sleep.trim().length() != 0 ||
+                mood.trim().length() != 0){
+            note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN);
+            iNoteModernPresenter.saveNote(note, getContext());
+            return true;
+        }else {
+            Toast.makeText(getContext(), "Заметка не может быть пустая", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 }

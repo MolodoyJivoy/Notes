@@ -23,6 +23,6 @@ public class NoteEasyPresenter implements INoteEasyPresenter {
 
     @Override
     public int countNote(Context context) {
-        return iDataClass.getCountNotes(context);
+        return iDataClass.getCountNotes(context) + 1;
     }
 }

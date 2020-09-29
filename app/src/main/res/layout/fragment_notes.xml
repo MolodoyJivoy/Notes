@@ -108,7 +108,11 @@
                         android:inputType="textMultiLine"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/Thanks"
+                        android:nextFocusDown="@+id/Thanks"  />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -149,7 +153,10 @@
                         android:inputType="textMultiLine"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/Task"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

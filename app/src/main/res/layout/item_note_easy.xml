@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:background="?android:attr/selectableItemBackground">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardItemNote"
@@ -33,27 +32,37 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/ZagolovokNote"
+                    android:id="@+id/ZagolovokNoteEasy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Заголовок"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:textColor="#292929"
                     android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/bookMarkModern"
+                    android:id="@+id/bookMarkEasy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_bookmark_note"
                     android:layout_gravity="center"/>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/DateNoteEasy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="18 сентября 2020"
+                android:textColor="#474747"
+                android:textSize="12sp"
+                android:textStyle="bold" />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
@@ -68,9 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="Текст"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:text="Текст"
                 android:textColor="#474747"
                 android:textSize="16sp" />
 
@@ -82,33 +91,6 @@
                 android:layout_marginBottom="4dp"
                 android:background="#DDDDDD" />
 
-            <TextView
-                android:id="@+id/DateNotes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="18 сентября 2020"
-                android:textColor="#474747"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tagNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="#Работа #Юля"
-                android:textSize="13sp"
-                android:visibility="gone" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ItemsCircleMainManu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,10 +10,12 @@ public class Note {
     private String[] m_Tag;
     private String m_Date;
 
+    private StatusNote m_NoteStatus;
+
     public Note() {
     }
 
-    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag) {
+    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag, StatusNote m_NoteStatus) {
         this.m_Zagolovok = m_Zagolovok;
         this.m_Today = m_Today;
         this.m_Thanks = m_Thanks;
@@ -22,6 +24,7 @@ public class Note {
         this.m_Mood = m_Mood;
         this.m_Tag = m_Tag;
         this.m_Date = m_Date;
+        this.m_NoteStatus = m_NoteStatus;
     }
 
     public String[] getTag() {
@@ -87,5 +90,13 @@ public class Note {
 
     public void setDate(String m_Date) {
         this.m_Date = m_Date;
+    }
+
+    public StatusNote getNoteStatus() {
+        return m_NoteStatus;
+    }
+
+    public void setNoteStatus(StatusNote m_NoteStatus) {
+        this.m_NoteStatus = m_NoteStatus;
     }
 }

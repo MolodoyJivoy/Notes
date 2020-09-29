@@ -9,6 +9,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -136,9 +137,9 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
         // it should be the same as passed to the makeNotificationChannel() method
 
         notification
-                .setSmallIcon(R.mipmap.ic_launcher) // can use any other icon
-                .setContentTitle("Notification!")
-                .setContentText("This is an Oreo notification!")
+                .setSmallIcon(R.drawable.ic_present) // can use any other icon
+                .setContentTitle("Случайный подарок")
+                .setContentText("Купить цветы")
                 .setNumber(3); // this shows a number in the notification dots
 
         NotificationManager notificationManager =

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -32,9 +30,10 @@ import java.util.List;
 import zakaz.zakaz.notes.Adapter.RecyclerAdapterTags;
 import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.Model.Note;
+import zakaz.zakaz.notes.Model.StatusNote;
 import zakaz.zakaz.notes.Model.Tag;
-import zakaz.zakaz.notes.Presenter.INoteModernPresenter;
-import zakaz.zakaz.notes.Presenter.NoteModernPresenter;
+import zakaz.zakaz.notes.Presenter.Modern.INoteModernPresenter;
+import zakaz.zakaz.notes.Presenter.Modern.NoteModernPresenter;
 import zakaz.zakaz.notes.R;
 import zakaz.zakaz.notes.View.INoteModern;
 
@@ -148,7 +147,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         for (int i = 0 ; i < tagsList.size() - 1; i++){
             tags[i] = tagsList.get(i).getName();
         }
-        note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags);
+        note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN);
         iNoteModernPresenter.saveNote(note, getContext());
     }
 }

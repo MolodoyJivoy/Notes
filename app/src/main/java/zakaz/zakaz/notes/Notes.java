@@ -20,7 +20,7 @@ import java.util.List;
 import zakaz.zakaz.notes.Adapter.RecyclerAdapterTags;
 import zakaz.zakaz.notes.Adapter.SliderPagerAdapter;
 import zakaz.zakaz.notes.Model.Note;
-import zakaz.zakaz.notes.Presenter.INoteModernPresenter;
+import zakaz.zakaz.notes.Presenter.Modern.INoteModernPresenter;
 import zakaz.zakaz.notes.uiNotes.NotesEasyFragment;
 import zakaz.zakaz.notes.uiNotes.NoteModernFragment;
 

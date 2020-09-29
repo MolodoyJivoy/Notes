@@ -27,4 +27,10 @@ public class Data implements IData {
         Paper.init(context);
         Paper.book("Notes").write(note.getZagolovok(), note);
     }
+
+    @Override
+    public int getCountNotes(Context context) {
+        Paper.init(context);
+        return Paper.book("Notes").getAllKeys().size();
+    }
 }

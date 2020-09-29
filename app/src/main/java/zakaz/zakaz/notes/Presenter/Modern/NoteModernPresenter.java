@@ -1,4 +1,4 @@
-package zakaz.zakaz.notes.Presenter;
+package zakaz.zakaz.notes.Presenter.Modern;
 
 import android.content.Context;
 

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.paperdb.Paper;
 import zakaz.zakaz.notes.Model.Note;
@@ -25,12 +26,18 @@ public class Data implements IData {
     @Override
     public void saveNote(Note note, Context context) {
         Paper.init(context);
-        Paper.book("Notes").write(note.getZagolovok(), note);
+        Paper.book("Notes").write(note.getUniqueID(), note);
     }
 
     @Override
     public int getCountNotes(Context context) {
         Paper.init(context);
         return Paper.book("Notes").getAllKeys().size();
+    }
+
+    @Override
+    public void delete(String id, Context context) {
+        Paper.init(context);
+        Paper.book("Notes").delete(id);
     }
 }

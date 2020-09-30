@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -99,7 +100,7 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
         return modelList.size();
     }
 
-    public class ViewHolderMain extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolderMain extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         TextView ZagolovokNote;
         TextView TextNote;
@@ -118,15 +119,22 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
             bookMarkModern = itemView.findViewById(R.id.bookMarkModern);
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             onNoteListener.onNoteClick(getAdapterPosition(), modelList);
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onNoteListener.onNoteLongClick(getAdapterPosition(), modelList);
+            return false;
+        }
     }
 
-    public class ViewHolderMainEasy extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolderMainEasy extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         TextView ZagolovokNoteEasy;
         TextView DateNoteEasy;
@@ -143,16 +151,24 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
             bookMarkEasy = itemView.findViewById(R.id.bookMarkEasy);
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             onNoteListener.onNoteClick(getAdapterPosition(), modelList);
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onNoteListener.onNoteLongClick(getAdapterPosition(), modelList);
+            return false;
+        }
     }
 
     public interface OnNoteListener{
         void onNoteClick(int position, List<Note> modelList);
+        void onNoteLongClick(int position, List<Note> modelList);
     }
 
     @Override
@@ -165,5 +181,9 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
             return -1;
         }
         //return position % 2 * 2;
+    }
+
+    public void setItems(List<Note> modelList) {
+        this.modelList = modelList;
     }
 }

@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import zakaz.zakaz.notes.Adapter.RecyclerAdapterTags;
 import zakaz.zakaz.notes.Data.Data;
@@ -65,12 +66,12 @@ public class NoteModernFragment extends Fragment implements INoteModern {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
         init(view);
         getTime();
         clickListener();
+
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(Color.TRANSPARENT);
@@ -225,13 +226,14 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         String date = Date.getText().toString();
         List<Tag> tagsList = recyclerAdapterTags.getModelList();
         String[] tags = new String[tagsList.size() - 1];
+        String uniqueID = UUID.randomUUID().toString();
         for (int i = 0 ; i < tagsList.size() - 1; i++){
             tags[i] = tagsList.get(i).getName();
         }
 
         if (today.trim().length() != 0 || thanks.trim().length() != 0 || task.trim().length() != 0 || sleep.trim().length() != 0 ||
                 mood.trim().length() != 0){
-            note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN);
+            note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN, uniqueID);
             iNoteModernPresenter.saveNote(note, getContext());
             return true;
         }else {

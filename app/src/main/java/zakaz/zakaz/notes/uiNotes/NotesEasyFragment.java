@@ -20,6 +20,7 @@ import com.google.android.material.button.MaterialButton;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.Model.Note;
@@ -78,8 +79,9 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
         String zagolovok = "Заметка " + iNoteEasyPresenter.countNote(getContext());
         String today = Today.getText().toString();
         String date = Date.getText().toString();
+        String uniqueID = UUID.randomUUID().toString();
         if (today.trim().length() != 0){
-            note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY);
+            note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY, uniqueID);
             iNoteEasyPresenter.saveNote(note, getContext());
             return true;
         }else {

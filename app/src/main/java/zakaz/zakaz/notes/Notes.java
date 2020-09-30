@@ -26,17 +26,6 @@ import zakaz.zakaz.notes.uiNotes.NoteModernFragment;
 
 public class Notes extends AppCompatActivity {
 
-    Toolbar toolbar;
-    INoteModernPresenter iNoteModernPresenter;
-    Note note;
-
-    RecyclerAdapterTags recyclerAdapterTags;
-
-    private TextInputEditText Zagolovok;
-    private TextView Date;
-    private EditText Today, Thanks, Task, Sleep, Mood;
-    private RecyclerView recyclerView;
-
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
@@ -54,6 +43,8 @@ public class Notes extends AppCompatActivity {
         pagerAdapter = new SliderPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(0);
+
+
 //        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            @Override
 //            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

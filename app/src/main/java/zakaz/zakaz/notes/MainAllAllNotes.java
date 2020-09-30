@@ -67,7 +67,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
         issueNotification();
 
         iNoteAllPresenter = new NoteAllAllPresenter(this, new Data());
-        iNoteAllPresenter.onAllNotes(getApplicationContext());
+        iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
 
         newNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,11 +166,18 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
     }
 
     @Override
-    public void AllNotes(List<Note> note) {
+    public void AllNotes(List<Note> note, int mode) {
         //noteListAdapter = new NoteListAdapter(this, note);
-        noteRecyclerListAdapter = new NoteRecyclerListAdapter(this, note, this);
-        listAllView.setAdapter(noteRecyclerListAdapter);
-        listAllView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        // mode - режитм получения данных
+
+        if (mode == 0){
+            noteRecyclerListAdapter = new NoteRecyclerListAdapter(this, note, this);
+            listAllView.setAdapter(noteRecyclerListAdapter);
+            listAllView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        }else if (mode == 1){
+            noteRecyclerListAdapter.setItems(note);
+            noteRecyclerListAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -195,8 +202,10 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK){
             if (requestCode == 1){
-                iNoteAllPresenter.onAllNotes(getApplicationContext());
+                iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
                 Toast.makeText(MainAllAllNotes.this, "Заметка добавлена", Toast.LENGTH_SHORT).show();
+            }else if (requestCode ==2 ){
+                Toast.makeText(MainAllAllNotes.this, "Заметка обнавлена", Toast.LENGTH_SHORT).show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -209,6 +218,14 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
 
     @Override
     public void onNoteClick(int position, List<Note> modelList) {
+        Intent intent = new Intent(MainAllAllNotes.this, Notes.class);
+        startActivityForResult(intent, 2);
         Toast.makeText(this, modelList.get(position).getToday(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNoteLongClick(int position, List<Note> modelList) {
+        iNoteAllPresenter.onDelete(modelList.get(position).getUniqueID(), MainAllAllNotes.this);
+        iNoteAllPresenter.onAllNotes(MainAllAllNotes.this, 1);
     }
 }

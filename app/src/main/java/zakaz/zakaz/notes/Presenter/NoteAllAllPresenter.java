@@ -20,8 +20,13 @@ public class NoteAllAllPresenter implements INoteAllPresenter {
 
 
     @Override
-    public void onAllNotes(Context context) {
+    public void onAllNotes(Context context, int mode) {
         List<Note> notes = iDataClass.getAllNotes(context);
-        iMainAllNotes.AllNotes(notes);
+        iMainAllNotes.AllNotes(notes, mode);
+    }
+
+    @Override
+    public void onDelete(String id, Context context) {
+        iDataClass.delete(id, context);
     }
 }

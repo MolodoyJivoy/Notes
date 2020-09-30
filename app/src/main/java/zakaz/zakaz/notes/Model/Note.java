@@ -1,6 +1,8 @@
 package zakaz.zakaz.notes.Model;
 
 public class Note {
+    private String uniqueID;
+
     private String m_Zagolovok;
     private String m_Today;
     private String m_Thanks;
@@ -15,7 +17,7 @@ public class Note {
     public Note() {
     }
 
-    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag, StatusNote m_NoteStatus) {
+    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag, StatusNote m_NoteStatus, String uniqueID) {
         this.m_Zagolovok = m_Zagolovok;
         this.m_Today = m_Today;
         this.m_Thanks = m_Thanks;
@@ -25,6 +27,7 @@ public class Note {
         this.m_Tag = m_Tag;
         this.m_Date = m_Date;
         this.m_NoteStatus = m_NoteStatus;
+        this.uniqueID = uniqueID;
     }
 
     public String[] getTag() {
@@ -98,5 +101,13 @@ public class Note {
 
     public void setNoteStatus(StatusNote m_NoteStatus) {
         this.m_NoteStatus = m_NoteStatus;
+    }
+
+    public String getUniqueID() {
+        return uniqueID;
+    }
+
+    public void setUniqueID(String uniqueID) {
+        this.uniqueID = uniqueID;
     }
 }

@@ -40,4 +40,16 @@ public class Data implements IData {
         Paper.init(context);
         Paper.book("Notes").delete(id);
     }
+
+    @Override
+    public Note getItemNoteInfo(Context context, String uidID) {
+        Paper.init(context);
+        return Paper.book("Notes").read(uidID);
+    }
+
+    @Override
+    public void ItemUpdate(Context context, Note noteUpdate) {
+        Paper.init(context);
+        Paper.book("Notes").write(noteUpdate.getUniqueID(), noteUpdate);
+    }
 }

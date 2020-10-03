@@ -1,6 +1,7 @@
 package zakaz.zakaz.notes.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.CornerTreatment;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
@@ -49,14 +53,24 @@ public class RecyclerAdapterTags extends RecyclerView.Adapter<RecyclerAdapterTag
     public void onBindViewHolder(@NonNull ViewHolderMain holder, final int position) {
         holder.chip.setCheckable(false);
         holder.chip.setTextAppearance(R.style.chipTextAppearance);
+        holder.chip.setChipBackgroundColorResource(R.color.TRANSPARENT);
+        holder.chip.setChipStrokeWidth(4);
+        holder.chip.setChipStrokeColorResource(R.color.BackChip);
+        holder.chip.setElevation(3);
+        ShapeAppearanceModel shapeAppearanceModel = holder.chip.getShapeAppearanceModel();
+        ShapeAppearanceModel builder = shapeAppearanceModel.toBuilder().setAllCorners(CornerFamily.ROUNDED, 18).build();
+        holder.chip.setShapeAppearanceModel(builder);
         if (modelList.get(position).getId() == -1){
             holder.chip.setChipIconVisible(true);
+            holder.chip.setChipIconTintResource(R.color.ColorChip);
             holder.chip.setChipIconResource(R.drawable.ic_baseline_add_24);
             holder.chip.setCloseIconVisible(false);
         }
         else {
             holder.chip.setCloseIconVisible(true);
             holder.chip.setChipIconVisible(false);
+            holder.chip.setCloseIconTintResource(R.color.ColorChip);
+            holder.chip.setCloseIconSize(54);
         }
         holder.chip.setText(modelList.get(position).getName());
         holder.chip.setOnClickListener(new View.OnClickListener() {
@@ -150,5 +164,9 @@ public class RecyclerAdapterTags extends RecyclerView.Adapter<RecyclerAdapterTag
             }
         });
         bottomSheetDialog.show();
+    }
+
+    public void setItems(List<Tag> modelList) {
+        this.modelList = modelList;
     }
 }

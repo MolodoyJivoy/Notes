@@ -20,4 +20,14 @@ public class NoteModernPresenter implements INoteModernPresenter {
     public void saveNote(Note note, Context context) {
         iDataClass.saveNote(note, context);
     }
+
+    @Override
+    public void ItemUpdate(Context context, Note noteUpdate) {
+        iDataClass.ItemUpdate(context, noteUpdate);
+    }
+
+    @Override
+    public Note ItemNoteInfo(Context context, String uidID) {
+        return iDataClass.getItemNoteInfo(context, uidID);
+    }
 }

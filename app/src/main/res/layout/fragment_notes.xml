@@ -77,7 +77,8 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="1dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -122,7 +123,8 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,7 +168,8 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -207,7 +210,8 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -249,7 +253,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="4dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -291,7 +296,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="4dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -302,16 +308,16 @@
                     android:paddingRight="14dp">
 
                     <TextView
-                        android:id="@+id/textView3234"
+                        android:id="@+id/textView2324"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Какие неудачи произошли за сегодня"
+                        android:text="Какие удачи произошли за сегодня"
                         android:textColor="#2C2C2C"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/Unluky"
+                        android:id="@+id/Lucky"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -333,7 +339,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="4dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -344,16 +351,16 @@
                     android:paddingRight="14dp">
 
                     <TextView
-                        android:id="@+id/textView2324"
+                        android:id="@+id/textView3234"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Какие удачи произошли за сегодня"
+                        android:text="Какие неудачи произошли за сегодня"
                         android:textColor="#2C2C2C"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/Lucky"
+                        android:id="@+id/Unluky"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"

@@ -25,4 +25,14 @@ public class NoteEasyPresenter implements INoteEasyPresenter {
     public int countNote(Context context) {
         return iDataClass.getCountNotes(context) + 1;
     }
+
+    @Override
+    public Note ItemNoteInfo(Context context, String uidID) {
+        return iDataClass.getItemNoteInfo(context, uidID);
+    }
+
+    @Override
+    public void ItemUpdate(Context context, Note noteUpdate) {
+        iDataClass.ItemUpdate(context, noteUpdate);
+    }
 }

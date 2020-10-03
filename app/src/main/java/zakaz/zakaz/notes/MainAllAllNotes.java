@@ -32,6 +32,7 @@ import io.paperdb.Paper;
 import zakaz.zakaz.notes.Adapter.NoteRecyclerListAdapter;
 import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.Model.Note;
+import zakaz.zakaz.notes.Model.StatusNote;
 import zakaz.zakaz.notes.Presenter.INoteAllPresenter;
 import zakaz.zakaz.notes.Presenter.NoteAllAllPresenter;
 import zakaz.zakaz.notes.View.IMainAllNotes;
@@ -73,6 +74,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainAllAllNotes.this, Notes.class);
+                intent.putExtra("Fragment", "New");
                 startActivityForResult(intent, 1);
             }
         });
@@ -205,6 +207,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
                 iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
                 Toast.makeText(MainAllAllNotes.this, "Заметка добавлена", Toast.LENGTH_SHORT).show();
             }else if (requestCode ==2 ){
+                iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
                 Toast.makeText(MainAllAllNotes.this, "Заметка обнавлена", Toast.LENGTH_SHORT).show();
             }
         }
@@ -219,6 +222,13 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
     @Override
     public void onNoteClick(int position, List<Note> modelList) {
         Intent intent = new Intent(MainAllAllNotes.this, Notes.class);
+        intent.putExtra("Fragment", "Update");
+        if (modelList.get(position).getNoteStatus() == StatusNote.EASY){
+            intent.putExtra("FragmentOpen", "EASY");
+        }else if (modelList.get(position).getNoteStatus() == StatusNote.MODERN){
+            intent.putExtra("FragmentOpen", "MODERN");
+        }
+        intent.putExtra("uidID", modelList.get(position).getUniqueID());
         startActivityForResult(intent, 2);
         Toast.makeText(this, modelList.get(position).getToday(), Toast.LENGTH_SHORT).show();
     }

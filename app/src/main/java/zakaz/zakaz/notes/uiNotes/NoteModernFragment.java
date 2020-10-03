@@ -40,6 +40,7 @@ import zakaz.zakaz.notes.Model.Tag;
 import zakaz.zakaz.notes.Presenter.Modern.INoteModernPresenter;
 import zakaz.zakaz.notes.Presenter.Modern.NoteModernPresenter;
 import zakaz.zakaz.notes.R;
+import zakaz.zakaz.notes.Util.ModeOpenNotes;
 import zakaz.zakaz.notes.View.INoteModern;
 
 import static android.app.Activity.RESULT_OK;
@@ -49,6 +50,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
     Toolbar toolbar;
     INoteModernPresenter iNoteModernPresenter;
     Note note;
+    Note noteUpdate;
 
     RecyclerAdapterTags recyclerAdapterTags;
 
@@ -56,8 +58,11 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
     private TextInputEditText Zagolovok;
     private TextView Date;
-    private EditText Today, Thanks, Task, Sleep, Mood;
+    private EditText Today, Thanks, Task, Sleep, Mood, Lucky, Unlucky;
     private RecyclerView recyclerView;
+
+    ModeOpenNotes modeOpenNotes;
+    String uidNoteID;
 
     public NoteModernFragment() {
         // Required empty public constructor
@@ -68,14 +73,44 @@ public class NoteModernFragment extends Fragment implements INoteModern {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
-        init(view);
-        getTime();
-        clickListener();
-
+        if (modeOpenNotes == ModeOpenNotes.NEW){
+            init(view);
+            getTime();
+            clickListener();
+        }else if (modeOpenNotes == ModeOpenNotes.UPDATE){
+            init(view);
+            getTime();
+            clickListener();
+            getNoteInfo(uidNoteID);
+        }
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(Color.TRANSPARENT);
         return view;
+    }
+
+    private void getNoteInfo(String uidNoteID) {
+        noteUpdate = iNoteModernPresenter.ItemNoteInfo(getContext(), uidNoteID);
+        setDataNote(noteUpdate);
+    }
+
+    private void setDataNote(Note noteUpdate) {
+        Zagolovok.setText(noteUpdate.getZagolovok());
+        Today.setText(noteUpdate.getToday());
+        Thanks.setText(noteUpdate.getThanks());
+        Task.setText(noteUpdate.getTask());
+        Sleep.setText(noteUpdate.getSleep());
+        Mood.setText(noteUpdate.getMood());
+        Lucky.setText(noteUpdate.getLucky());
+        Unlucky.setText(noteUpdate.getUnlucky());
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("Добавить тег", -1));
+        for (int i = 0; i < noteUpdate.getTag().length; i++){
+            tags.add(0, new Tag(noteUpdate.getTag()[i], i));
+        }
+        recyclerAdapterTags = new RecyclerAdapterTags(getContext(), tags);
+        recyclerView.setAdapter(recyclerAdapterTags);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void clickListener() {
@@ -104,9 +139,16 @@ public class NoteModernFragment extends Fragment implements INoteModern {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                if (getDataNote()){
-                    getActivity().setResult(RESULT_OK, intent);
-                    getActivity().finish();
+                if (modeOpenNotes == ModeOpenNotes.NEW){
+                    if (getDataNote()){
+                        getActivity().setResult(RESULT_OK, intent);
+                        getActivity().finish();
+                    }
+                }else if (modeOpenNotes == ModeOpenNotes.UPDATE){
+                    if (getDataNote()){
+                        getActivity().setResult(RESULT_OK, intent);
+                        getActivity().finish();
+                    }
                 }
             }
         });
@@ -179,6 +221,41 @@ public class NoteModernFragment extends Fragment implements INoteModern {
             }
         });
 
+        Mood.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Lucky);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        Lucky.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setFocus(s, Unlucky);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void setFocus(CharSequence s, EditText focus) {
@@ -206,6 +283,9 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         Date = view.findViewById(R.id.DateModernNotes);
         Mood = view.findViewById(R.id.Mood);
 
+        Lucky = view.findViewById(R.id.Lucky);
+        Unlucky = view.findViewById(R.id.Unluky);
+
         newNote = view.findViewById(R.id.newNote);
 
         recyclerView = view.findViewById(R.id.ItemsCircle);
@@ -224,22 +304,45 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         String sleep = Sleep.getText().toString();
         String mood = Mood.getText().toString();
         String date = Date.getText().toString();
+        String lucky = Lucky.getText().toString();
+        String unlucky = Unlucky.getText().toString();
         List<Tag> tagsList = recyclerAdapterTags.getModelList();
-        String[] tags = new String[tagsList.size() - 1];
         String uniqueID = UUID.randomUUID().toString();
+        String[] tags = new String[tagsList.size() - 1];
         for (int i = 0 ; i < tagsList.size() - 1; i++){
             tags[i] = tagsList.get(i).getName();
         }
 
         if (today.trim().length() != 0 || thanks.trim().length() != 0 || task.trim().length() != 0 || sleep.trim().length() != 0 ||
                 mood.trim().length() != 0){
-            note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN, uniqueID);
-            iNoteModernPresenter.saveNote(note, getContext());
+            if (modeOpenNotes == ModeOpenNotes.NEW){
+                note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN, uniqueID, lucky, unlucky);
+                iNoteModernPresenter.saveNote(note, getContext());
+            }else if (modeOpenNotes == ModeOpenNotes.UPDATE){
+                noteUpdate.setDate(date);
+                noteUpdate.setToday(today);
+                noteUpdate.setMood(mood);
+                noteUpdate.setSleep(sleep);
+                noteUpdate.setTag(tags);
+                noteUpdate.setTask(task);
+                noteUpdate.setThanks(thanks);
+                noteUpdate.setZagolovok(zagolovok);
+                noteUpdate.setLucky(lucky);
+                noteUpdate.setUnlucky(unlucky);
+                iNoteModernPresenter.ItemUpdate(getContext(), noteUpdate);
+            }
             return true;
         }else {
             Toast.makeText(getContext(), "Заметка не может быть пустая", Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
 
+    public void setModeOpenNotes(ModeOpenNotes modeOpenNotes) {
+        this.modeOpenNotes = modeOpenNotes;
+    }
+
+    public void setUidNoteID(String uidNoteID) {
+        this.uidNoteID = uidNoteID;
     }
 }

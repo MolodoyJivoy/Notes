@@ -54,9 +54,9 @@ public class RecyclerAdapterTags extends RecyclerView.Adapter<RecyclerAdapterTag
         holder.chip.setCheckable(false);
         holder.chip.setTextAppearance(R.style.chipTextAppearance);
         holder.chip.setChipBackgroundColorResource(R.color.TRANSPARENT);
-        holder.chip.setChipStrokeWidth(4);
+        holder.chip.setChipStrokeWidth((float) 0.3);
         holder.chip.setChipStrokeColorResource(R.color.BackChip);
-        holder.chip.setElevation(3);
+        holder.chip.setElevation(6);
         ShapeAppearanceModel shapeAppearanceModel = holder.chip.getShapeAppearanceModel();
         ShapeAppearanceModel builder = shapeAppearanceModel.toBuilder().setAllCorners(CornerFamily.ROUNDED, 18).build();
         holder.chip.setShapeAppearanceModel(builder);

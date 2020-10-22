@@ -41,5 +41,28 @@
         <item name="cornerSize">4dp</item>
     </style>
 
+    <!-- Настройка AlertDialog -->
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.Rounded</item>
+    </style>
+
+    <style name="MaterialAlertDialog.Rounded" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialAlertDialog.Rounded</item>
+    </style>
+
+    <style name="ShapeAppearance.MaterialAlertDialog.Rounded" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="ButtonsAlert" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="ButtonAlertOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 </resources>

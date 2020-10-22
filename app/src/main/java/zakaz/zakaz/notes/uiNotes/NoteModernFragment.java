@@ -29,6 +29,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -253,6 +254,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         Date.setText(date);
     }
 
+    //инициализация и заполнение данными
     private void init(View view) {
         toolbar = view.findViewById(R.id.toolbar);
         Zagolovok = view.findViewById(R.id.Zagolovok);

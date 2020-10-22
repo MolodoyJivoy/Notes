@@ -91,6 +91,7 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         }
         holder.TagNote.setText(tags);
+        holder.DateNote.setText(modelList.get(position).getDate());
     }
 
 
@@ -105,6 +106,7 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
         TextView ZagolovokNote;
         TextView TextNote;
         TextView TagNote;
+        TextView DateNote;
         RecyclerView recyclerViewTags;
         OnNoteListener onNoteListener;
 
@@ -115,6 +117,7 @@ public class NoteRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.V
             ZagolovokNote = itemView.findViewById(R.id.ZagolovokNote);
             TextNote = itemView.findViewById(R.id.TextEasyNotes);
             TagNote = itemView.findViewById(R.id.tagNote);
+            DateNote = itemView.findViewById(R.id.DateNotes);
             recyclerViewTags = itemView.findViewById(R.id.ItemsCircleMainManu);
             bookMarkModern = itemView.findViewById(R.id.bookMarkModern);
             this.onNoteListener = onNoteListener;

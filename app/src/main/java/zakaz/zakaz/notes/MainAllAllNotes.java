@@ -3,8 +3,10 @@ package zakaz.zakaz.notes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,16 +18,23 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.developer.kalert.KAlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.dialog.MaterialDialogs;
+
+import java.util.Collections;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -65,7 +74,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
 
 //        notificathion();
         //showNotification(MainAllAllNotes.this, "1", "2", null);
-        issueNotification();
+        //issueNotification(); // уведомление о слуйчайном подарке
 
         iNoteAllPresenter = new NoteAllAllPresenter(this, new Data());
         iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
@@ -169,8 +178,10 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
 
     @Override
     public void AllNotes(List<Note> note, int mode) {
-        //noteListAdapter = new NoteListAdapter(this, note);
-        // mode - режитм получения данных
+        // noteListAdapter = new NoteListAdapter(this, note);
+        // mode - режим получения данных
+
+        Collections.reverse(note);
 
         if (mode == 0){
             noteRecyclerListAdapter = new NoteRecyclerListAdapter(this, note, this);
@@ -185,7 +196,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
+        //getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
         return true;
     }
 
@@ -230,12 +241,33 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
         }
         intent.putExtra("uidID", modelList.get(position).getUniqueID());
         startActivityForResult(intent, 2);
-        Toast.makeText(this, modelList.get(position).getToday(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, modelList.get(position).getToday(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNoteLongClick(int position, List<Note> modelList) {
-        iNoteAllPresenter.onDelete(modelList.get(position).getUniqueID(), MainAllAllNotes.this);
-        iNoteAllPresenter.onAllNotes(MainAllAllNotes.this, 1);
+        MaterialAlertDialogBuilder alertDialogBuilder = new MaterialAlertDialogBuilder(MainAllAllNotes.this, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(MainAllAllNotes.this).inflate(R.layout.alert_dialog_item_delete, (ConstraintLayout) findViewById(R.id.containerDialog));
+        Button buttonCacel = view.findViewById(R.id.buttonCancelDialog);
+        Button buttonPositive = view.findViewById(R.id.buttonPositiveAlert);
+        AlertDialog alertDialog = alertDialogBuilder.setView(view).create();
+        alertDialog.show();
+
+        buttonCacel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        buttonPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iNoteAllPresenter.onDelete(modelList.get(position).getUniqueID(), MainAllAllNotes.this);
+                iNoteAllPresenter.onAllNotes(MainAllAllNotes.this, 1);
+                Toast.makeText(getApplicationContext(), "Запись удалена", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
     }
 }

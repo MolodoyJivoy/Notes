@@ -12,12 +12,27 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Random;
 
 import zakaz.zakaz.notes.OnBoarding.OnBoarding;
 
 public class Walkthrough extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 1500;
+    private final int SPLASH_DISPLAY_LENGTH = 1900;
+
+    private String[] pharase = {
+            "Дойдя до конца, люди смеются над страхами, мучившими их вначале. (Пауло Коэльо)",
+    "Пробуйте и терпите неудачу, но не прерывайте ваших стараний. (Стивен Каггва)",
+    "Мы сами должны стать теми переменами, которые хотим видеть в мире. (Махатма Ганди)",
+    "Там, где кончается саморазвитие, начинается диван. (Дэвид Аллен)"};
+
+    TextView textWalk;
+    TextView Date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +40,11 @@ public class Walkthrough extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_walkthrough);
+        textWalk = findViewById(R.id.TextWalkthrough);
+        Date = findViewById(R.id.DateWalkthrough);
+        getTime();
+        int value = (int) (Math.random() * pharase.length);
+        textWalk.setText(pharase[value]);
 
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -35,5 +55,11 @@ public class Walkthrough extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+
+    private void getTime() {
+        DateFormat df = new SimpleDateFormat("d MMM yyyy, EEE, HH:mm:ss");
+        String date = df.format(Calendar.getInstance().getTime());
+        Date.setText(date);
     }
 }

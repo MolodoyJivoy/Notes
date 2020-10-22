@@ -12,14 +12,13 @@ public class Note {
     private String[] m_Tag;
     private String m_Date;
     private String m_Lucky;
-    private String m_Unlucky;
 
     private StatusNote m_NoteStatus;
 
     public Note() {
     }
 
-    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag, StatusNote m_NoteStatus, String uniqueID, String m_Lucky, String m_Unlucky) {
+    public Note(String m_Zagolovok, String m_Today, String m_Thanks, String m_Task, String m_Sleep, String m_Mood, String m_Date, String[] m_Tag, StatusNote m_NoteStatus, String uniqueID, String m_Lucky) {
         this.m_Zagolovok = m_Zagolovok;
         this.m_Today = m_Today;
         this.m_Thanks = m_Thanks;
@@ -31,7 +30,6 @@ public class Note {
         this.m_NoteStatus = m_NoteStatus;
         this.uniqueID = uniqueID;
         this.m_Lucky = m_Lucky;
-        this.m_Unlucky = m_Unlucky;
     }
 
 
@@ -123,13 +121,5 @@ public class Note {
 
     public void setLucky(String m_Lucky) {
         this.m_Lucky = m_Lucky;
-    }
-
-    public String getUnlucky() {
-        return m_Unlucky;
-    }
-
-    public void setUnlucky(String m_Unlucky) {
-        this.m_Unlucky = m_Unlucky;
     }
 }

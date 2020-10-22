@@ -58,7 +58,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
     private TextInputEditText Zagolovok;
     private TextView Date;
-    private EditText Today, Thanks, Task, Sleep, Mood, Lucky, Unlucky;
+    private EditText Today, Thanks, Task, Sleep, Mood, Lucky;
     private RecyclerView recyclerView;
 
     ModeOpenNotes modeOpenNotes;
@@ -102,7 +102,6 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         Sleep.setText(noteUpdate.getSleep());
         Mood.setText(noteUpdate.getMood());
         Lucky.setText(noteUpdate.getLucky());
-        Unlucky.setText(noteUpdate.getUnlucky());
         List<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Добавить тег", -1));
         for (int i = 0; i < noteUpdate.getTag().length; i++){
@@ -238,24 +237,6 @@ public class NoteModernFragment extends Fragment implements INoteModern {
             }
         });
 
-        Lucky.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Unlucky);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
     }
 
     private void setFocus(CharSequence s, EditText focus) {
@@ -284,7 +265,6 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         Mood = view.findViewById(R.id.Mood);
 
         Lucky = view.findViewById(R.id.Lucky);
-        Unlucky = view.findViewById(R.id.Unluky);
 
         newNote = view.findViewById(R.id.newNote);
 
@@ -305,7 +285,6 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         String mood = Mood.getText().toString();
         String date = Date.getText().toString();
         String lucky = Lucky.getText().toString();
-        String unlucky = Unlucky.getText().toString();
         List<Tag> tagsList = recyclerAdapterTags.getModelList();
         String uniqueID = UUID.randomUUID().toString();
         String[] tags = new String[tagsList.size() - 1];
@@ -316,7 +295,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
         if (today.trim().length() != 0 || thanks.trim().length() != 0 || task.trim().length() != 0 || sleep.trim().length() != 0 ||
                 mood.trim().length() != 0){
             if (modeOpenNotes == ModeOpenNotes.NEW){
-                note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN, uniqueID, lucky, unlucky);
+                note = new Note(zagolovok, today, thanks, task, sleep, mood, date, tags, StatusNote.MODERN, uniqueID, lucky);
                 iNoteModernPresenter.saveNote(note, getContext());
             }else if (modeOpenNotes == ModeOpenNotes.UPDATE){
                 noteUpdate.setDate(date);
@@ -328,7 +307,6 @@ public class NoteModernFragment extends Fragment implements INoteModern {
                 noteUpdate.setThanks(thanks);
                 noteUpdate.setZagolovok(zagolovok);
                 noteUpdate.setLucky(lucky);
-                noteUpdate.setUnlucky(unlucky);
                 iNoteModernPresenter.ItemUpdate(getContext(), noteUpdate);
             }
             return true;

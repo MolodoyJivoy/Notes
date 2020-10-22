@@ -92,7 +92,7 @@ public class Notes extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == 1){
-                    notesEasyFragment.startAnim();
+
                 }
             }
 

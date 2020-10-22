@@ -51,9 +51,9 @@ public class OnBoarding extends AppCompatActivity {
         getStarted.setVisibility(View.INVISIBLE);
         btnAnim = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.button_animation);
         final List<ScreenItem> screenItems = new ArrayList<>();
-        screenItems.add(new ScreenItem("Каждый день новая книга", "Каждый день - это новая жизнь!» Каждый день по утрам проживаем мы юность, Не взирая на пол и на возраст, на чин и на званья.", R.drawable.ic_clipboard_boarding));
-        screenItems.add(new ScreenItem("Добавляй в избранное, чтобы не забыть", "Каждый день - это новая жизнь!» Каждый день по утрам проживаем мы юность, Не взирая на пол и на возраст, на чин и на званья.", R.drawable.ic_clipboard_boarding));
-        screenItems.add(new ScreenItem("Не забывай, читать классно", "Каждый день - это новая жизнь!» Каждый день по утрам проживаем мы юность, Не взирая на пол и на возраст, на чин и на званья.", R.drawable.ic_clipboard_boarding));
+        screenItems.add(new ScreenItem("Создавайте заметки", "Текст текст текст текст текст текст", R.drawable.ic_clipboard_boarding));
+        screenItems.add(new ScreenItem("Используйте два шаблона заметок", "Текст текст текст текст текст текст", R.drawable.ic_clipboard_boarding));
+        //screenItems.add(new ScreenItem("", "Каждый день - это новая жизнь!»", R.drawable.ic_clipboard_boarding));
         introViewPagerAdapter = new IntroViewPagerAdapter(OnBoarding.this, screenItems);
         viewPager.setAdapter(introViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

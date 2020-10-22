@@ -47,7 +47,6 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
     INoteEasyPresenter iNoteEasyPresenter;
     Note note;
     Note noteUpdate;
-    ImageView animView;
 
     EditText Today;
 
@@ -114,7 +113,7 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
         String uniqueID = UUID.randomUUID().toString();
         if (today.trim().length() != 0){
             if (modeOpenNotes == ModeOpenNotes.NEW){
-                note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY, uniqueID, null, null);
+                note = new Note(zagolovok, today, null, null, null, null, date, null, StatusNote.EASY, uniqueID, null);
                 iNoteEasyPresenter.saveNote(note, getContext());
             }else if (modeOpenNotes == ModeOpenNotes.UPDATE){
                 noteUpdate.setToday(today);
@@ -138,7 +137,6 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
         Date = view.findViewById(R.id.DateEasyNotes);
         Today = view.findViewById(R.id.Today);
         newNoteEasy = view.findViewById(R.id.newNoteEasy);
-        animView = view.findViewById(R.id.imageViewAnim);
 
         iNoteEasyPresenter = new NoteEasyPresenter(this, new Data());
     }
@@ -149,10 +147,5 @@ public class NotesEasyFragment extends Fragment implements INoteEasy {
 
     public void setUidNoteID(String uidNoteID) {
         this.uidNoteID = uidNoteID;
-    }
-
-    public void startAnim(){
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.alpha_image);
-        animView.startAnimation(animation);
     }
 }

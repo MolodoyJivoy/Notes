@@ -53,13 +53,6 @@
             android:gravity="center"
             android:layout_weight="0">
 
-            <ImageView
-                android:id="@+id/imageViewAnim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_floral_design" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/newNoteEasy"
                 style="?attr/materialButtonOutlinedStyle"
@@ -69,12 +62,6 @@
                 android:textColor="#323232"
                 app:rippleColor="#676767" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_floral_design_invert" />
         </LinearLayout>
 
     </LinearLayout>

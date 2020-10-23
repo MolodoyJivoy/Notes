@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import zakaz.zakaz.notes.Data.Data;
 import zakaz.zakaz.notes.OnBoarding.OnBoarding;
 
 public class Walkthrough extends AppCompatActivity {
@@ -43,6 +44,7 @@ public class Walkthrough extends AppCompatActivity {
         textWalk = findViewById(R.id.TextWalkthrough);
         Date = findViewById(R.id.DateWalkthrough);
         getTime();
+        Data.getSettings(this);
         int value = (int) (Math.random() * pharase.length);
         textWalk.setText(pharase[value]);
 

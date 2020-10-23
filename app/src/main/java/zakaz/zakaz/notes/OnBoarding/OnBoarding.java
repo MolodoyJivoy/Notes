@@ -51,9 +51,9 @@ public class OnBoarding extends AppCompatActivity {
         getStarted.setVisibility(View.INVISIBLE);
         btnAnim = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.button_animation);
         final List<ScreenItem> screenItems = new ArrayList<>();
-        screenItems.add(new ScreenItem("Создавайте заметки", "Создавай, удаляй и редактируй свои заметки", R.drawable.ic_clipboard_boarding));
-        screenItems.add(new ScreenItem("Используйте два шаблона заметок", "Создавай как обычные заметки так и заметки по особому шаблону", R.drawable.ic_clipboard_boarding));
-        screenItems.add(new ScreenItem("Добавляй теги", "Добавляй теги к заметкам по особому шаблону", R.drawable.ic_clipboard_boarding));
+        screenItems.add(new ScreenItem("Создавайте заметки", "Создавай, удаляй и редактируй свои заметки", R.drawable.ic_main_icon_boarding));
+        screenItems.add(new ScreenItem("Используйте два шаблона заметок", "Создавай как обычные заметки так и заметки по особому шаблону", R.drawable.ic_main_icon_boarding));
+        screenItems.add(new ScreenItem("Добавляй теги", "Добавляй теги к заметкам по особому шаблону", R.drawable.ic_main_icon_boarding));
         //screenItems.add(new ScreenItem("", "Каждый день - это новая жизнь!»", R.drawable.ic_clipboard_boarding));
         introViewPagerAdapter = new IntroViewPagerAdapter(OnBoarding.this, screenItems);
         viewPager.setAdapter(introViewPagerAdapter);

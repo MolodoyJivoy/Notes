@@ -41,6 +41,7 @@ import zakaz.zakaz.notes.Model.Tag;
 import zakaz.zakaz.notes.Presenter.Modern.INoteModernPresenter;
 import zakaz.zakaz.notes.Presenter.Modern.NoteModernPresenter;
 import zakaz.zakaz.notes.R;
+import zakaz.zakaz.notes.Util.ConfigSettings;
 import zakaz.zakaz.notes.Util.ModeOpenNotes;
 import zakaz.zakaz.notes.View.INoteModern;
 
@@ -161,7 +162,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Thanks);
+                setFocus(s, Today, Thanks);
             }
 
             @Override
@@ -178,7 +179,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Task);
+                setFocus(s, Thanks, Task);
             }
 
             @Override
@@ -195,7 +196,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Sleep);
+                setFocus(s, Task, Sleep);
             }
 
             @Override
@@ -212,7 +213,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Mood);
+                setFocus(s, Sleep, Mood);
             }
 
             @Override
@@ -229,7 +230,7 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setFocus(s, Lucky);
+                setFocus(s, Mood, Lucky);
             }
 
             @Override
@@ -240,11 +241,13 @@ public class NoteModernFragment extends Fragment implements INoteModern {
 
     }
 
-    private void setFocus(CharSequence s, EditText focus) {
+    private void setFocus(CharSequence s, EditText current, EditText focus) {
         String m_s = s.toString();
-        if (m_s.trim().contains(",.")){
+        if (m_s.trim().contains(ConfigSettings.FastPassage)){
             focus.setFocusable(true);
             focus.requestFocus();
+            String tmp = current.getText().toString();
+            current.setText(tmp.substring(0, tmp.length() - 2));
         }
     }
 

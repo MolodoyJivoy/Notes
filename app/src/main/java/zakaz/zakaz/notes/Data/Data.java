@@ -4,10 +4,12 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import io.paperdb.Paper;
 import zakaz.zakaz.notes.Model.Note;
+import zakaz.zakaz.notes.Util.ConfigSettings;
 
 public class Data implements IData {
 
@@ -51,5 +53,20 @@ public class Data implements IData {
     public void ItemUpdate(Context context, Note noteUpdate) {
         Paper.init(context);
         Paper.book("Notes").write(noteUpdate.getUniqueID(), noteUpdate);
+    }
+
+    public static void getSettings(Context context){
+        Paper.init(context);
+
+        Map<String, String> settings = Paper.book("Settings").read("Settings");
+        if (settings != null){
+            ConfigSettings.FastPassage = settings.get("FastPassage");
+        }
+
+    }
+
+    public void setSettings(Context context, Map<String, String> configSettings){
+        Paper.init(context);
+        Paper.book("Settings").write("Settings", configSettings);
     }
 }

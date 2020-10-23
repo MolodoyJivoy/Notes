@@ -196,7 +196,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
+        getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
         return true;
     }
 
@@ -205,7 +205,7 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
         switch (item.getItemId()){
             case R.id.menu_main_setting:
                 Intent intent = new Intent(MainAllAllNotes.this, Settings.class);
-                startActivity(intent);
+                startActivityForResult(intent, 9);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -217,9 +217,11 @@ public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes,
             if (requestCode == 1){
                 iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
                 Toast.makeText(MainAllAllNotes.this, "Заметка добавлена", Toast.LENGTH_SHORT).show();
-            }else if (requestCode ==2 ){
+            }else if (requestCode == 2){
                 iNoteAllPresenter.onAllNotes(getApplicationContext(), 0);
                 Toast.makeText(MainAllAllNotes.this, "Заметка обнавлена", Toast.LENGTH_SHORT).show();
+            }else if (requestCode == 9){
+                Toast.makeText(MainAllAllNotes.this, "Настройки сохранены", Toast.LENGTH_SHORT).show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

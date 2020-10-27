@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="zakaz.zakaz.notes.FirstFragment"
+        android:name="my.all.notes.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="zakaz.zakaz.notes.SecondFragment"
+        android:name="my.all.notes.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

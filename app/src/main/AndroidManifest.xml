@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="zakaz.zakaz.notes">
+    package="my.all.notes">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_notes"
+        android:icon="@mipmap/ic_launcher_notes_two"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_notes"
+        android:roundIcon="@mipmap/ic_launcher_notes_two"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Walkthrough"
+            android:name="my.all.notes.Walkthrough"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +19,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".OnBoarding.OnBoarding"
+            android:name="my.all.notes.OnBoarding.OnBoarding"
             android:label="@string/title_activity_on_boarding"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
-        <activity android:name=".Settings" />
+        <activity android:name="my.all.notes.Settings" />
         <activity
-            android:name=".Notes"
+            android:name="my.all.notes.Notes"
             android:label="@string/title_activity_notes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainAllAllNotes"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            android:name="my.all.notes.MainAllAllNotes"
+            android:theme="@style/MaterialComponents.NoActionBar">
         </activity>
     </application>
 

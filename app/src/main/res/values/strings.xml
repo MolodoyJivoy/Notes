@@ -16,4 +16,54 @@
 
     <string name="positive">Удалить</string>
     <string name="negative">Отмена</string>
+
+    <string-array name="phrases">
+        <item>Дойдя до конца, люди смеются над страхами, мучившими их вначале. \n\n<b>Пауло Коэльо</b></item>
+        <item>Пробуйте и терпите неудачу, но не прерывайте ваших стараний. \n\n<b>Стивен Каггва</b></item>
+        <item>Мы сами должны стать теми переменами, которые хотим видеть в мире. \n\n<b>Махатма Ганди</b></item>
+        <item>Там, где кончается саморазвитие, начинается диван. \n\n<b>Дэвид Аллен</b></item>
+        <item>Решения, принятые глухой ночью, обычно теряют силу при свете дня \n\n<b>Диана Сеттерфилд</b></item>
+        <item>Родиться дураком не позор. А вот умереть дураком стыдно.\n\n<b>Эрия Марк Ремарк</b></item>
+        <item>Пробуйте и терпите неудачу, но не прерывайте ваших стараний\n\n<b>Стивен Каггва</b></item>
+        <item>Когда вы знаете, чего хотите, и вы хотите этого достаточно сильно, вы найдете способ получить это\n\n<b>Джим Рон</b></item>
+        <item>Единственный путь стать умнее – играть с более сильным соперником\n\n<b>Эммануэль Ласкер</b></item>
+    </string-array>
+
+    <string name="tutorial_main_menu">Здесь отображаются все Ваши заметки. Вы можете их <b>редактировать</b>, <b>удалять</b> и <b>создавать</b>. Удаление происходит долгим нажатием на заметку. Создавать заметки вы можете как обычные, так и усовершенствованные</string>
+    <string name="tutorial_settings">Здесь отображаются все Ваши настройки. Вы можете их <b>изменять и настраивать под себя</b></string>
+    <string name="tutorial_modern">Это усовершенствованная заметка, разбитая на параметры, для тех, кто хочет попробовать новый стиль заметок. \nДля того чтобы осуществлять быстрый переход между пунктами в конце написанного поставьте <b>,.</b> и вы автоматически окажетесь в следующем пункте. Изменить данный набор символов для быстрого перехода можно в настройках</string>
+    <string name="tutorial_easy">Это обычная заметка для тех, кому необходим старый, но проверенный стиль</string>
+    <string name="alert_dialog_item_delete">Вы действительно хотите удалить данную заметку?</string>
+
+    <!-- Day -->
+    <string name="modern_todayDay">Чем Вы будете полезны сегодня?</string>
+    <string name="modern_thanksDay">За что вы сегодня благодарны?</string>
+    <string name="modern_taskDay">Какова Ваша важная задача на сегодня?</string>
+    <string name="modern_sleepDay">Как вы спали ночью?</string>
+    <string name="modern_moodDay">Как Вы хотите чувствовать себя сегодня?</string>
+    <string name="modern_luckyDay">Чему Вы научились вчера?</string>
+
+    <string name="hint_todayDay">Напишите чем Вы сегодня будете полезны</string>
+    <string name="hint_thanksDay">Напишите за что Вы сегодня благодарны</string>
+    <string name="hint_taskDay">Опишите Вашу важную задачу или задачи</string>
+    <string name="hint_sleepDay">Как Вы спали? Что Вам снилось?</string>
+    <string name="hint_moodDay">Ваш девиз на день</string>
+    <string name="hint_luckyDay">Что приобрели за прошлый день</string>
+
+    <!-- Night -->
+
+    <string name="modern_todayNight">Что у Вас случилось сегодня?</string>
+    <string name="modern_thanksNight">За что вы сегодня благодарны?</string>
+    <string name="modern_taskNight">Какая Ваша важная задача была на сегодня?</string>
+    <string name="modern_sleepNight">Как вы спали ночью?</string>
+    <string name="modern_moodNight">Как вы сегодня себя чувствовали?</string>
+    <string name="modern_luckyNight">Какие удачи произошли за сегодня?</string>
+
+    <string name="hint_todayNight">Напишите что случилось у Вас сегодня</string>
+    <string name="hint_thanksNight">Напишите за что вы сегодня благодарны</string>
+    <string name="hint_taskNight">Опишите Вашу важную задачу или задачи</string>
+    <string name="hint_sleepNight">Как Вы спали? Что Вам снилось?</string>
+    <string name="hint_moodNight">Какой у Вас сегодня был девиз на день</string>
+    <string name="hint_luckyNight">Распишите Ваши задачи</string>
+
 </resources>

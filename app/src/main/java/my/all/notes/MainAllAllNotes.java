@@ -42,7 +42,6 @@ import my.all.notes.Presenter.INoteAllPresenter;
 import my.all.notes.Presenter.NoteAllAllPresenter;
 import my.all.notes.Util.Tutorial;
 import my.all.notes.View.IMainAllNotes;
-import zakaz.zakaz.notes.R;
 
 public class MainAllAllNotes extends AppCompatActivity implements IMainAllNotes, NoteRecyclerListAdapter.OnNoteListener {
 

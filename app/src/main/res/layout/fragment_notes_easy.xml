@@ -34,7 +34,7 @@
             android:background="#fff"
             android:ems="10"
             android:gravity="top"
-            android:hint="Заметка"
+            android:hint="Ваша заметка"
             android:inputType="textMultiLine"
             android:layout_weight="1"
             android:overScrollMode="always"
